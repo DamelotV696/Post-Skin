@@ -1,0 +1,18 @@
+#adsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 50px;
+}
+
+#adsContainer .card {
+    background: url("https://s-media-cache-ak0.pinimg.com/564x/cf/1e/c4/cf1ec4b0c96e59657a46867a91bb0d1e.jpg");
+    background-size: cover;
+    text-shadow: #fffb00 1px 0 10px;
+    /* background-position: center; */
+    border: 3px dashed #fffb00;
+
+}
+
+body{
+    background-color: rgb(95, 92, 149);
+}
