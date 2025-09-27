@@ -7,6 +7,7 @@ let adsContainer = document.getElementById("adsContainer");
 let search = document.getElementById("search");
 let filterCategory = document.getElementById("filterCategory");
 let sortPrice = document.getElementById("sortPrice");
+let imgUrl = document.getElementById("imgUrl");
 
 let posts = [];
 
@@ -17,13 +18,15 @@ addPostBtn.addEventListener("click", (event) => {
   let description = PostDescription.value.trim();
   let price = PostPrice.value.trim();
   let category = PostCategory.value;
+  let urlImg = imgUrl.value;
 
-  if (name && description && price && category) {
+  if (name && description && price && category && urlImg) {
     const NewPost = {
       name: name,
       description: description,
       price: parseFloat(price),
       category: category == 1 ? "Техника" : "Животные",
+      img: urlImg,
     };
 
     posts.push(NewPost);
@@ -31,6 +34,7 @@ addPostBtn.addEventListener("click", (event) => {
     PostName.value = "";
     PostDescription.value = "";
     PostPrice.value = "";
+    imgUrl.value = "";
 
     let modal = bootstrap.Modal.getInstance(adModal);
     modal.hide();
@@ -67,14 +71,14 @@ function renderPosts(list = posts) {
   adsContainer.innerHTML = "";
 
   if (list.length === 0) {
-    adsContainer.innerHTML = `<p class="text-center mt-3">Нет объявлений</p>`;
+    adsContainer.innerHTML = `<h2 class="text-center mt-3 text-light">Нет объявлений</h2>`;
     return;
   }
 
   list.forEach((post) => {
     adsContainer.insertAdjacentHTML(
-      "afterbegin",
-      `<div class="card mb-3" style="width: 18rem; ">
+      "beforeend",
+      `<div class="card mb-3" style="width: 18rem; background: url('${post.img}'); background-size: cover; background-repeat: no-repeat;">
         <div class="card-body">
           <h4 class="card-title text-center text-light">${post.name}</h4>
           <p class="card-text text-center text-light">${post.description}</p>
